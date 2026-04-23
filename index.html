@@ -1,0 +1,1262 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Instagram Marcas</title>
+    <style>
+      :root {
+        --bg: #f6f1ea;
+        --surface: #fffaf5;
+        --ink: #251a17;
+        --muted: #6e5a54;
+        --line: rgba(37, 26, 23, 0.10);
+        --accent: #b74f2a;
+        --accent-soft: rgba(183, 79, 42, 0.08);
+        --gold: #d59b31;
+        --gold-soft: rgba(213, 155, 49, 0.12);
+        --green: #1D9E75;
+        --green-soft: rgba(29, 158, 117, 0.10);
+        --purple: #534AB7;
+        --purple-soft: rgba(83, 74, 183, 0.08);
+        --teal: #0F6E56;
+        --teal-soft: rgba(15, 110, 86, 0.08);
+        --coral: #D85A30;
+        --shadow-sm: 0 2px 8px rgba(76, 43, 31, 0.06);
+        --shadow: 0 8px 30px rgba(76, 43, 31, 0.08);
+        --r-sm: 10px;
+        --r-md: 14px;
+        --r-lg: 20px;
+        --r-xl: 28px;
+      }
+
+      * { box-sizing: border-box; margin: 0; }
+      html { scroll-behavior: smooth; }
+
+      body {
+        font-family: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+        color: var(--ink);
+        background: linear-gradient(180deg, #fcf7f1 0%, #f4eee7 100%);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body.modal-active {
+        overflow: hidden;
+      }
+
+      body.modal-closed {
+        overflow: hidden;
+      }
+
+      .page {
+        width: min(1200px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 20px 0 72px;
+        transition: filter 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+      }
+
+      body.modal-active .page {
+        filter: blur(10px);
+        opacity: 0.24;
+        transform: scale(0.995);
+      }
+
+      body.modal-closed .page {
+        filter: blur(14px);
+        opacity: 0;
+        transform: scale(0.99);
+      }
+
+      /* --- NAV --- */
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-bottom: 18px;
+        padding: 10px 14px;
+        border-radius: var(--r-md);
+        background: rgba(255, 250, 245, 0.92);
+        border: 1px solid var(--line);
+        backdrop-filter: blur(16px);
+        position: sticky;
+        top: 8px;
+        z-index: 100;
+      }
+
+      .nav a {
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+
+      .nav a:hover {
+        color: var(--accent);
+        background: var(--accent-soft);
+      }
+
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: rgba(37, 26, 23, 0.30);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 300;
+      }
+
+      .modal-backdrop.show {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .modal-backdrop.closed {
+        background: rgba(37, 26, 23, 0.96);
+      }
+
+      .promo-modal {
+        width: min(560px, 100%);
+        padding: 28px;
+        border: 1px solid rgba(255, 250, 245, 0.7);
+        border-radius: var(--r-xl);
+        background: rgba(255, 250, 245, 0.96);
+        box-shadow: 0 18px 60px rgba(37, 26, 23, 0.18);
+      }
+
+      .modal-backdrop.closed .promo-modal {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .promo-modal h3 {
+        font-size: clamp(24px, 4vw, 34px);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      .promo-modal p {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      .promo-modal a {
+        color: var(--accent);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .promo-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .promo-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .promo-btn.primary {
+        border-color: transparent;
+        background: var(--accent);
+        color: #fffaf5;
+      }
+
+      /* --- HERO --- */
+      .hero {
+        padding: 28px 30px;
+        border: 1px solid var(--line);
+        border-radius: var(--r-xl);
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        margin-bottom: 20px;
+      }
+
+      .pill {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .pill.purple { color: var(--purple); background: var(--purple-soft); }
+      .pill.teal { color: var(--teal); background: var(--teal-soft); }
+      .pill.accent { color: var(--accent); background: var(--accent-soft); }
+      .pill.green { color: var(--green); background: var(--green-soft); }
+      .pill.gold { color: #855a0f; background: var(--gold-soft); }
+
+      h1 {
+        font-size: clamp(30px, 4.5vw, 52px);
+        line-height: 1;
+        letter-spacing: -0.04em;
+        margin-top: 14px;
+      }
+
+      h2 {
+        font-size: clamp(22px, 3vw, 34px);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      h3 { font-size: 18px; letter-spacing: -0.02em; }
+
+      .hero-sub {
+        max-width: 720px;
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 22px;
+      }
+
+      .metric {
+        padding: 16px;
+        border-radius: var(--r-md);
+        background: rgba(37, 26, 23, 0.03);
+      }
+
+      .metric-label {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 4px;
+      }
+
+      .metric-value {
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+      }
+
+      /* --- SECTIONS --- */
+      .section {
+        margin-top: 24px;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 14px;
+      }
+
+      .section-head p {
+        max-width: 560px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      /* --- CARDS --- */
+      .card {
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: var(--r-xl);
+        background: var(--surface);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .grid { display: grid; gap: 14px; }
+      .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+      /* --- CHART AREA --- */
+      .chart-wrap {
+        position: relative;
+        width: 100%;
+      }
+
+      /* --- INSIGHT ITEMS (border-left) --- */
+      .insight {
+        border-left: 3px solid var(--green);
+        padding: 10px 0 10px 14px;
+        margin-bottom: 10px;
+      }
+
+      .insight:last-child { margin-bottom: 0; }
+
+      .insight h4 {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+
+      .insight p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .insight.soft { border-color: #9FE1CB; }
+      .insight.purple-line { border-color: var(--purple); }
+      .insight.purple-soft { border-color: #AFA9EC; }
+
+      /* --- TOP POSTS --- */
+      .post-item {
+        padding: 16px;
+        border: 1px solid var(--line);
+        border-radius: var(--r-md);
+        background: rgba(255, 255, 255, 0.6);
+        margin-bottom: 10px;
+      }
+
+      .post-item:last-child { margin-bottom: 0; }
+
+      .post-item h4 {
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      .post-item p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .meta-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 8px;
+      }
+
+      .meta-tag {
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: var(--gold-soft);
+        color: #855a0f;
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .embed-shell {
+        overflow: hidden;
+        margin-top: 12px;
+        border: 1px solid var(--line);
+        border-radius: var(--r-md);
+        background: #fff;
+      }
+
+      .embed-shell iframe {
+        display: block;
+        width: 100%;
+        min-height: 680px;
+        border: 0;
+        background: #fff;
+      }
+
+      /* --- RANKING --- */
+      .rank-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .rank-row:last-child { border-bottom: none; }
+
+      .rank-pos {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 800;
+        flex-shrink: 0;
+        background: rgba(37, 26, 23, 0.06);
+        color: var(--muted);
+      }
+
+      .rank-pos.gold { background: rgba(213, 155, 49, 0.2); color: #6e4a0a; }
+      .rank-pos.silver { background: rgba(150, 150, 150, 0.2); color: #444; }
+      .rank-pos.bronze { background: rgba(183, 120, 70, 0.2); color: #6a3f1a; }
+
+      .rank-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .rank-name {
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .rank-handle {
+        font-size: 12px;
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .rank-bar-wrap {
+        width: 38%;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .rank-bar {
+        flex: 1;
+        height: 8px;
+        border-radius: 4px;
+        background: var(--purple);
+        transition: width 0.6s ease;
+      }
+
+      .rank-count {
+        font-size: 12px;
+        color: var(--muted);
+        font-weight: 600;
+        min-width: 55px;
+        text-align: right;
+      }
+
+      /* --- COMPARATIVA --- */
+      .cmp-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .cmp-table th {
+        text-align: left;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--line);
+      }
+
+      .cmp-table td {
+        padding: 10px 12px;
+        font-size: 13px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .cmp-table td:first-child {
+        font-weight: 700;
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .cmp-table tr:hover td {
+        background: rgba(183, 79, 42, 0.02);
+      }
+
+      .cmp-high { color: var(--accent); font-weight: 700; }
+      .cmp-mid { color: #855a0f; font-weight: 600; }
+
+      .cmp-scroll { overflow-x: auto; }
+
+      /* --- REC CARDS --- */
+      .rec-card {
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: var(--r-xl);
+        background: var(--surface);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .rec-head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+
+      .rec-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: var(--r-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        background: var(--green-soft);
+      }
+
+      .rec-item {
+        padding: 12px 14px;
+        background: rgba(37, 26, 23, 0.025);
+        border-radius: var(--r-sm);
+        margin-bottom: 8px;
+      }
+
+      .rec-item:last-child { margin-bottom: 0; }
+
+      .rec-item-top {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 4px;
+      }
+
+      .rec-item h4 {
+        font-size: 13px;
+        font-weight: 700;
+        flex: 1;
+      }
+
+      .priority-tag {
+        padding: 3px 8px;
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        flex-shrink: 0;
+      }
+
+      .priority-tag.alta { background: rgba(183, 79, 42, 0.1); color: var(--accent); }
+      .priority-tag.media { background: var(--gold-soft); color: #855a0f; }
+
+      .rec-item p {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      /* --- PROFILES --- */
+      .profile-card {
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: var(--r-lg);
+        background: var(--surface);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .profile-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        gap: 8px;
+      }
+
+      .profile-card h3 { font-size: 17px; }
+
+      .profile-handle {
+        margin-top: 4px;
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .profile-followers {
+        padding: 6px 10px;
+        border-radius: var(--r-sm);
+        background: rgba(37, 26, 23, 0.05);
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .profile-summary {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 12px;
+      }
+
+      .tag {
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgba(37, 26, 23, 0.05);
+        font-size: 11px;
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .profile-points {
+        margin: 12px 0 0;
+        padding-left: 16px;
+      }
+
+      .profile-points li {
+        margin: 6px 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      /* --- BRAND CONTENT LINES --- */
+      .content-line {
+        padding: 14px;
+        border-radius: var(--r-md);
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.5);
+        margin-bottom: 8px;
+      }
+
+      .content-line:last-child { margin-bottom: 0; }
+
+      .content-line-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .content-line h4 {
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .content-line-label {
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgba(37, 26, 23, 0.06);
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      .content-line p {
+        margin-top: 6px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      /* --- NOTICE --- */
+      .notice {
+        padding: 18px 20px;
+        border: 1px dashed rgba(183, 79, 42, 0.3);
+        border-radius: var(--r-lg);
+        background: rgba(255, 243, 235, 0.7);
+      }
+
+      .notice strong { font-size: 14px; }
+
+      .notice p {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      /* --- FOOTER --- */
+      footer {
+        margin-top: 28px;
+        color: var(--muted);
+        font-size: 12px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+      }
+
+      /* --- RESPONSIVE --- */
+      @media (max-width: 1080px) {
+        .g2, .g3, .g4, .metrics,
+        .rank-layout { grid-template-columns: 1fr; }
+      }
+
+      @media (max-width: 720px) {
+        .page {
+          width: min(100% - 16px, 1200px);
+          padding-top: 10px;
+        }
+
+        .nav { padding: 8px 10px; gap: 2px; top: 4px; }
+        .nav a { padding: 5px 10px; font-size: 12px; }
+
+        .hero { padding: 18px 20px; border-radius: var(--r-lg); }
+        h1 { font-size: 26px; }
+        h2 { font-size: 22px; }
+
+        .metrics { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+        .metric { padding: 12px; }
+        .metric-value { font-size: 22px; }
+
+        .card, .rec-card, .profile-card {
+          padding: 16px;
+          border-radius: var(--r-lg);
+        }
+
+        .section-head {
+          flex-direction: column;
+          align-items: start;
+        }
+
+        .embed-shell iframe { min-height: 520px; }
+
+        .rank-bar-wrap { width: 30%; }
+
+        .rec-item-top { flex-direction: column; align-items: flex-start; gap: 4px; }
+        .promo-modal { padding: 22px; }
+      }
+
+      @media (max-width: 480px) {
+        .metrics { grid-template-columns: 1fr; }
+        h1 { font-size: 22px; }
+        .rank-bar-wrap { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <nav class="nav" id="nav"></nav>
+      <div id="app"></div>
+      <footer id="footer"></footer>
+    </div>
+
+    <div class="modal-backdrop" id="promoModal" aria-hidden="true">
+      <div class="promo-modal" role="dialog" aria-modal="true" aria-labelledby="promoTitle">
+        <span class="pill accent">Contacto</span>
+        <h3 id="promoTitle" style="margin-top: 14px;">Esto fue creado por OsvaldoHernández. Sí quieres más detalle, conversemos 🙌</h3>
+        <div class="promo-actions">
+          <a class="promo-btn primary" href="https://wa.me/56951179298" target="_blank" rel="noreferrer">Conversemos</a>
+          <button class="promo-btn" type="button" id="closePromo">Cerrar</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+    <script>
+      let DATA;
+      const COLORS = ['#534AB7','#1D9E75','#D85A30','#D4537E','#378ADD','#639922','#BA7517','#888780','#E24B4A','#85B7EB','#97C459'];
+      let promoTimerStarted = false;
+
+      async function init() {
+        const resp = await fetch("data.json");
+        DATA = await resp.json();
+        render();
+        setTimeout(renderCharts, 100);
+        setupPromoTimer();
+      }
+
+      function fmt(n) {
+        if (n == null) return "—";
+        if (n >= 1000) return (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(".", ",") + "K";
+        return n.toLocaleString("es-CL");
+      }
+
+      function fmtFull(n) {
+        if (n == null) return "—";
+        return n.toLocaleString("es-CL");
+      }
+
+      function render() {
+        const brands = [...DATA.brands].sort((a, b) => b.followers - a.followers);
+        const top = brands[0];
+        const maxViews = Math.max(...DATA.topPosts.views.map(p => p.views || 0), ...DATA.topPosts.likes.map(p => p.views || 0));
+        const maxLikes = Math.max(...DATA.topPosts.likes.map(p => p.likes || 0), ...DATA.topPosts.comments.map(p => p.likes || 0));
+
+        document.getElementById("nav").innerHTML = [
+          ["#charts", "Gráficos"],
+          ["#conclusiones", "Conclusiones"],
+          ["#deep-dives", "Deep Dives"],
+          ["#top-posts", "Top Posts"],
+          ["#ranking", "Ranking"],
+          ["#comparativa", "Comparativa"],
+          ["#recomendaciones", "Acciones"],
+          ["#perfiles", "Perfiles"]
+        ].map(([h, l]) => `<a href="${h}">${l}</a>`).join("");
+
+        document.getElementById("app").innerHTML = [
+          renderHero(brands, top, maxViews, maxLikes),
+          renderChartsSection(brands),
+          renderConclusions(),
+          renderDeepDives(),
+          renderTopPosts(),
+          renderRanking(brands),
+          renderComparison(brands),
+          renderRecommendations(),
+          renderProfiles(brands)
+        ].join("");
+
+        document.getElementById("footer").innerHTML =
+          `Datos visibles públicamente extraídos el ${DATA.meta.extractionDate}. Likes y views pueden variar; guardados no están disponibles sin acceso privado a analytics.`;
+      }
+
+      function renderHero(brands, top, maxViews, maxLikes) {
+        return `
+        <section class="hero">
+          <span class="pill purple">Dashboard de contenido</span>
+          <h1>${DATA.meta.title}</h1>
+          <p class="hero-sub">Verás toda la información sobre el ecosistema de Instagram de tu competencia. Verás métricas, aprendizajes, mejores posts de la categoría, ranking, entre otras cosas.</p>
+          <p class="hero-sub" style="margin-top: 10px;">Tu feedback es muy importante. <a href="https://wa.me/56941179298" target="_blank" rel="noreferrer" style="color: var(--accent); font-weight: 700; text-decoration: none;">Escríbenos por WhatsApp</a></p>
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-label">Marcas analizadas</div>
+              <div class="metric-value">${brands.length}</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Top seguidores · ${top.name}</div>
+              <div class="metric-value">${fmt(top.followers)}</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Max views en feed reciente</div>
+              <div class="metric-value">${fmt(maxViews)}</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Max likes en feed reciente</div>
+              <div class="metric-value">${fmt(maxLikes)}</div>
+            </div>
+          </div>
+        </section>`;
+      }
+
+      function renderChartsSection(brands) {
+        const tp = DATA.topPosts;
+        return `
+        <section class="section" id="charts">
+          <div class="section-head">
+            <div>
+              <span class="pill purple">Visualización</span>
+              <h2>Panorama general</h2>
+            </div>
+            <p>Distribución de seguidores entre marcas y performance de los posts más destacados.</p>
+          </div>
+          <div class="grid g2">
+            <div class="card">
+              <h3>Distribución de seguidores</h3>
+              <div class="chart-wrap" style="height: 260px; margin-top: 12px;">
+                <canvas id="chartPie"></canvas>
+              </div>
+              <div id="pieLegend" style="margin-top: 12px;"></div>
+            </div>
+            <div class="card">
+              <h3>Top posts por comentarios</h3>
+              <div class="chart-wrap" style="height: 120px; margin-top: 12px;">
+                <canvas id="chartComments"></canvas>
+              </div>
+              <h3 style="margin-top: 20px;">Top posts por views</h3>
+              <div class="chart-wrap" style="height: 120px; margin-top: 12px;">
+                <canvas id="chartViews"></canvas>
+              </div>
+              <h3 style="margin-top: 20px;">Top posts por likes</h3>
+              <div class="chart-wrap" style="height: 120px; margin-top: 12px;">
+                <canvas id="chartLikes"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>`;
+      }
+
+      function renderCharts() {
+        const brands = [...DATA.brands].sort((a, b) => b.followers - a.followers);
+        const tp = DATA.topPosts;
+        const gridColor = 'rgba(37,26,23,0.06)';
+        const textColor = '#6e5a54';
+
+        // PIE
+        const pieLabels = brands.map(b => b.name);
+        const pieData = brands.map(b => b.followers);
+        const total = pieData.reduce((a, b) => a + b, 0);
+
+        new Chart(document.getElementById("chartPie"), {
+          type: "doughnut",
+          data: {
+            labels: pieLabels,
+            datasets: [{ data: pieData, backgroundColor: COLORS, borderWidth: 2, borderColor: '#fffaf5' }]
+          },
+          options: {
+            responsive: true, maintainAspectRatio: false, cutout: "58%",
+            plugins: { legend: { display: false }, tooltip: {
+              callbacks: { label: ctx => ctx.label + ": " + Math.round(ctx.parsed / 1000) + "K (" + Math.round(ctx.parsed / total * 100) + "%)" }
+            }}
+          }
+        });
+
+        document.getElementById("pieLegend").innerHTML =
+          '<div style="display:flex;flex-wrap:wrap;gap:5px 12px;font-size:11px;color:#6e5a54;">' +
+          pieLabels.map((l, i) => {
+            const pct = Math.round(pieData[i] / total * 100);
+            return '<span style="display:flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;border-radius:2px;background:' + COLORS[i] + ';flex-shrink:0;"></span>' + l + ' ' + pct + '%</span>';
+          }).join("") + '</div>';
+
+        // COMMENTS BAR
+        makeHBar("chartComments",
+          tp.comments.map(p => p.brand + " · " + p.title),
+          tp.comments.map(p => p.comments),
+          ['#1D9E75', '#5DCAA5'], textColor, gridColor);
+
+        // VIEWS BAR
+        makeHBar("chartViews",
+          tp.views.map(p => p.brand + " · " + p.title),
+          tp.views.map(p => p.views),
+          ['#534AB7', '#7F77DD'], textColor, gridColor,
+          v => Math.round(v / 1000) + "K");
+
+        // LIKES BAR
+        makeHBar("chartLikes",
+          tp.likes.map(p => p.brand + " · " + p.title),
+          tp.likes.map(p => p.likes),
+          ['#D85A30', '#F0997B'], textColor, gridColor);
+      }
+
+      function makeHBar(id, labels, data, colors, textColor, gridColor, tickFn) {
+        new Chart(document.getElementById(id), {
+          type: "bar",
+          data: {
+            labels: labels,
+            datasets: [{ data: data, backgroundColor: colors, borderRadius: 4, barThickness: 24 }]
+          },
+          options: {
+            indexAxis: "y", responsive: true, maintainAspectRatio: false,
+            scales: {
+              x: { grid: { color: gridColor }, ticks: { color: textColor, font: { size: 11 }, callback: tickFn || (v => v) } },
+              y: { grid: { display: false }, ticks: { color: textColor, font: { size: 11 } } }
+            },
+            plugins: { legend: { display: false } }
+          }
+        });
+      }
+
+      function renderConclusions() {
+        const c = DATA.conclusions;
+        return `
+        <section class="section" id="conclusiones">
+          <div class="section-head">
+            <div>
+              <span class="pill teal">Conclusiones</span>
+              <h2>Lectura cualitativa de la industria</h2>
+            </div>
+            <p>Hallazgos editoriales del contenido visible y la respuesta de las audiencias en el feed público reciente.</p>
+          </div>
+          <div class="grid g2">
+            <div class="card">
+              <h3 style="margin-bottom: 14px;">Qué publica la competencia</h3>
+              ${c.whatTheyPublish.map((item, i) =>
+                `<div class="insight ${i >= 2 ? 'soft' : ''}">
+                  <h4>${item.title}</h4>
+                  <p>${item.text}</p>
+                </div>`
+              ).join("")}
+            </div>
+            <div class="card">
+              <h3 style="margin-bottom: 14px;">Cómo es su comunidad</h3>
+              ${c.howCommunityReacts.map((item, i) =>
+                `<div class="insight ${i >= 2 ? 'soft' : ''}" style="border-color: ${i < 2 ? '#534AB7' : '#AFA9EC'};">
+                  <h4>${item.title}</h4>
+                  <p>${item.text}</p>
+                </div>`
+              ).join("")}
+            </div>
+          </div>
+        </section>`;
+      }
+
+      function renderDeepDives() {
+        return `<div id="deep-dives">${DATA.deepDives.map(dd => `
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <span class="pill accent">Deep dive</span>
+              <h2>${dd.brand}</h2>
+            </div>
+            <p>${dd.intro}</p>
+          </div>
+          <div class="grid g2">
+            <div class="card">
+              <h3 style="margin-bottom: 14px;">Qué publica</h3>
+              ${dd.whatPublishes.map((item, i) =>
+                `<div class="insight ${i >= 2 ? 'soft' : ''}">
+                  <h4>${item.title}</h4>
+                  <p>${item.text}</p>
+                </div>`
+              ).join("")}
+            </div>
+            <div class="card">
+              <h3 style="margin-bottom: 14px;">Cómo responde su comunidad</h3>
+              ${dd.communityResponse.map((item, i) =>
+                `<div class="insight ${i >= 2 ? 'soft' : ''}" style="border-color: ${i < 2 ? '#534AB7' : '#AFA9EC'};">
+                  <h4>${item.title}</h4>
+                  <p>${item.text}</p>
+                </div>`
+              ).join("")}
+            </div>
+          </div>
+        </section>`).join("")}</div>`;
+      }
+
+      function renderTopPosts() {
+        const tp = DATA.topPosts;
+
+        function postBlock(post) {
+          const statsArr = [];
+          if (post.comments != null) statsArr.push(fmtFull(post.comments) + " comentarios");
+          if (post.likes != null) statsArr.push(fmtFull(post.likes) + " likes");
+          if (post.views != null) statsArr.push(fmtFull(post.views) + " views");
+
+          return `
+          <div class="post-item">
+            <div class="meta-tags">
+              <span class="meta-tag">#${post.rank} ${post.brand}</span>
+              ${statsArr.map(s => `<span class="meta-tag">${s}</span>`).join("")}
+            </div>
+            <h4>${post.title}</h4>
+            <p>${post.description}</p>
+            ${post.embedUrl ? `<div class="embed-shell"><iframe src="${post.embedUrl}" loading="lazy" title="Post destacado ${post.brand}"></iframe></div>` : ""}
+          </div>`;
+        }
+
+        return `
+        <section class="section" id="top-posts">
+          <div class="section-head">
+            <div>
+              <span class="pill gold">Top posts</span>
+              <h2>Mejores publicaciones</h2>
+            </div>
+            <p>Selección basada en el feed público reciente. El recorte no representa todo el histórico, solo lo visible desde el endpoint web público.</p>
+          </div>
+          <div class="grid g2">
+            <div class="card">
+              <span class="pill teal" style="margin-bottom: 12px;">Comentarios</span>
+              <h3>Mayor conversación</h3>
+              <div style="margin-top: 12px;">
+                ${tp.comments.map(p => postBlock(p)).join("")}
+              </div>
+            </div>
+            <div class="card">
+              <span class="pill purple" style="margin-bottom: 12px;">Views</span>
+              <h3>Mayor alcance en video</h3>
+              <div style="margin-top: 12px;">
+                ${tp.views.map(p => postBlock(p)).join("")}
+              </div>
+            </div>
+            <div class="card">
+              <span class="pill accent" style="margin-bottom: 12px;">Likes</span>
+              <h3>Mayor aprobación</h3>
+              <div style="margin-top: 12px;">
+                ${tp.likes.map(p => postBlock(p)).join("")}
+              </div>
+            </div>
+            <div class="card">
+              <span class="pill gold" style="margin-bottom: 12px;">Guardados</span>
+              <h3>No visibles públicamente</h3>
+              <div class="notice" style="margin-top: 12px;">
+                <strong>Instagram no expone guardados en el feed público.</strong>
+                <p>Para esta métrica no hay fuente confiable sin autenticación o acceso propietario a analytics,
+                así que el dashboard la deja explícitamente fuera.</p>
+              </div>
+            </div>
+          </div>
+        </section>`;
+      }
+
+      function renderRanking(brands) {
+        const maxFollowers = brands[0].followers;
+        return `
+        <section class="section" id="ranking">
+          <div class="section-head">
+            <div>
+              <span class="pill purple">Ranking</span>
+              <h2>Marcas de mayor a menor</h2>
+            </div>
+            <p>Ordenadas por seguidores públicos al momento de la extracción.</p>
+          </div>
+          <div class="grid g2">
+            <div class="card">
+              <h3 style="margin-bottom: 8px;">Ranking por seguidores</h3>
+              ${brands.map((b, i) => {
+                const medal = i === 0 ? "gold" : i === 1 ? "silver" : i === 2 ? "bronze" : "";
+                const pct = Math.round(b.followers / maxFollowers * 100);
+                const opacity = Math.max(0.3, 1 - i * 0.07);
+                return `
+                <div class="rank-row">
+                  <div class="rank-pos ${medal}">${i + 1}</div>
+                  <div class="rank-info">
+                    <div class="rank-name">${b.name}</div>
+                    <a class="rank-handle" href="${b.url}" target="_blank" rel="noreferrer">@${b.handle}</a>
+                  </div>
+                  <div class="rank-bar-wrap">
+                    <div class="rank-bar" style="width: ${pct}%; opacity: ${opacity};"></div>
+                  </div>
+                  <div class="rank-count">${fmtFull(b.followers)}</div>
+                </div>`;
+              }).join("")}
+            </div>
+            <div class="card">
+              <h3 style="margin-bottom: 12px;">Líneas de contenido</h3>
+              ${brands.filter(b => b.contentLine).map(b => `
+                <div class="content-line">
+                  <div class="content-line-top">
+                    <h4>${b.name}</h4>
+                    <span class="content-line-label">${b.contentLine.label}</span>
+                  </div>
+                  <p>${b.contentLine.description}</p>
+                </div>`).join("")}
+            </div>
+          </div>
+        </section>`;
+      }
+
+      function renderComparison(brands) {
+        return `
+        <section class="section" id="comparativa">
+          <div class="section-head">
+            <div>
+              <span class="pill accent">Comparativa</span>
+              <h2>Mapa competitivo por marca</h2>
+            </div>
+            <p>Tono editorial, frecuencia de publicación, intensidad de CTA y tipo de comunidad.</p>
+          </div>
+          <div class="card">
+            <div class="cmp-scroll">
+              <table class="cmp-table">
+                <thead>
+                  <tr><th>Marca</th><th>Tono</th><th>Frecuencia</th><th>CTA</th><th>Comunidad</th></tr>
+                </thead>
+                <tbody>
+                  ${brands.map(b => {
+                    if (!b.comparison) return "";
+                    const c = b.comparison;
+                    const ctaCls = c.cta.toLowerCase().includes("muy fuerte") ? "cmp-high" : c.cta.toLowerCase().includes("moderado") ? "cmp-mid" : "";
+                    const freqCls = c.frequency.toLowerCase().includes("muy alta") ? "cmp-high" : c.frequency.toLowerCase().includes("alta") ? "cmp-mid" : "";
+                    return `<tr>
+                      <td>${b.name}</td>
+                      <td>${c.tone}</td>
+                      <td class="${freqCls}">${c.frequency}</td>
+                      <td class="${ctaCls}">${c.cta}</td>
+                      <td>${c.community}</td>
+                    </tr>`;
+                  }).join("")}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>`;
+      }
+
+      function renderRecommendations() {
+        return `
+        <section class="section" id="recomendaciones">
+          <div class="section-head">
+            <div>
+              <span class="pill green">Aprendizajes</span>
+              <h2>Aprendizajes de la industria</h2>
+            </div>
+            <p>Hallazgos accionables basados en los patrones visibles de la industria, ordenados por prioridad e impacto.</p>
+          </div>
+          <div class="grid g2">
+            ${DATA.recommendations.map(cat => `
+              <div class="rec-card">
+                <div class="rec-head">
+                  <div class="rec-icon">${cat.icon}</div>
+                  <h3>${cat.category}</h3>
+                </div>
+                ${cat.items.map(item => `
+                  <div class="rec-item">
+                    <div class="rec-item-top">
+                      <h4>${item.title}</h4>
+                      <span class="priority-tag ${item.priority}">${item.priority}</span>
+                    </div>
+                    <p>${item.text}</p>
+                  </div>`).join("")}
+              </div>`).join("")}
+          </div>
+        </section>`;
+      }
+
+      function renderProfiles(brands) {
+        return `
+        <section class="section" id="perfiles">
+          <div class="section-head">
+            <div>
+              <span class="pill purple">Perfiles</span>
+              <h2>Lectura rápida por cuenta</h2>
+            </div>
+            <p>Cada card resume el posicionamiento, temas dominantes y tono editorial de la marca.</p>
+          </div>
+          <div class="grid g3">
+            ${brands.map(b => `
+              <article class="profile-card">
+                <div class="profile-top">
+                  <div>
+                    <h3>${b.name}</h3>
+                    <div class="profile-handle">@${b.handle}</div>
+                  </div>
+                  <div class="profile-followers">${fmtFull(b.followers)}</div>
+                </div>
+                <p class="profile-summary">${b.summary}</p>
+                <div class="tag-list">
+                  ${b.tags.map(t => `<span class="tag">${t}</span>`).join("")}
+                </div>
+                <ul class="profile-points">
+                  ${b.profilePoints.map(p => `<li>${p}</li>`).join("")}
+                </ul>
+              </article>`).join("")}
+            </div>
+        </section>`;
+      }
+
+      function setupPromoTimer() {
+        if (promoTimerStarted) return;
+        promoTimerStarted = true;
+
+        const modal = document.getElementById("promoModal");
+        const closeBtn = document.getElementById("closePromo");
+
+        function hidePromo() {
+          document.body.classList.remove("modal-active");
+          document.body.classList.add("modal-closed");
+          modal.classList.add("show", "closed");
+          modal.setAttribute("aria-hidden", "false");
+        }
+
+        function showPromo() {
+          document.body.classList.remove("modal-closed");
+          document.body.classList.add("modal-active");
+          modal.classList.remove("closed");
+          modal.classList.add("show");
+          modal.setAttribute("aria-hidden", "false");
+        }
+
+        closeBtn.addEventListener("click", hidePromo);
+
+        setTimeout(showPromo, 30000);
+      }
+
+      init();
+    </script>
+  </body>
+</html>

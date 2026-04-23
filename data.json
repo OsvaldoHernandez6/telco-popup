@@ -1,0 +1,448 @@
+{
+  "meta": {
+    "title": "Radar de la Industria Telco CL",
+    "extractionDate": "2026-04-23",
+    "totalBrands": 6
+  },
+  "brands": [
+    {
+      "name": "Entel Chile",
+      "handle": "entel",
+      "url": "https://www.instagram.com/entel/",
+      "followers": 501886,
+      "posts": 2532,
+      "summary": "La marca líder del benchmark por volumen y performance visible. Su contenido combina concursos, cultura pop, beneficios Club Entel y piezas emocionales con enorme capacidad de mover conversación.",
+      "tags": ["concursos", "cultura pop", "beneficios", "escala"],
+      "profilePoints": [
+        "Lidera el ranking por seguidores públicos dentro de Telco CL.",
+        "Domina los top posts de comentarios, likes y views visibles del recorte analizado."
+      ],
+      "contentLine": {
+        "label": "Entretenimiento masivo",
+        "description": "Combina concursos, nostalgia, música, beneficios y cultura pop para convertir una telco en un actor de entretenimiento masivo."
+      },
+      "comparison": {
+        "tone": "Masivo y promocional",
+        "frequency": "Alta",
+        "cta": "Muy fuerte (concursos y beneficios)",
+        "community": "Altamente participativa"
+      }
+    },
+    {
+      "name": "WOM Chile",
+      "handle": "womchile",
+      "url": "https://www.instagram.com/womchile/",
+      "followers": 393307,
+      "posts": 1653,
+      "summary": "Nueva segunda marca del benchmark por escala pública. WOM mezcla cobertura, territorio, creators, beneficios y una identidad mucho más irreverente para convertir promesa de red en contenido con validación masiva.",
+      "tags": ["cobertura", "territorio", "creators", "beneficios"],
+      "profilePoints": [
+        "Entra como la segunda cuenta por seguidores públicos dentro de Telco CL al 2026-04-23.",
+        "También se mete en la parte alta del benchmark por likes y views visibles con piezas recientes de cobertura y territorio."
+      ],
+      "contentLine": {
+        "label": "Cobertura + territorio + creators",
+        "description": "Comunicación que aterriza la red en pruebas territoriales, escapadas, orgullo local, promociones y creators para volver tangible la promesa de cobertura."
+      },
+      "comparison": {
+        "tone": "Irreverente y territorial",
+        "frequency": "Alta",
+        "cta": "Fuerte, beneficios y demostración",
+        "community": "Amplia, validación alta"
+      }
+    },
+    {
+      "name": "Movistar Chile",
+      "handle": "movistarchile",
+      "url": "https://www.instagram.com/movistarchile/",
+      "followers": 276058,
+      "posts": 2454,
+      "summary": "Tercera marca del benchmark en escala tras la entrada de WOM. Construye desde superioridad de red, deporte, packs de streaming y portabilidad, con una estética mucho más comercial y orientada a conversión.",
+      "tags": ["fútbol", "5G", "streaming", "portabilidad"],
+      "profilePoints": [
+        "Queda tercera por seguidores públicos, pero concentra uno de los reels con más views visibles del benchmark.",
+        "Su relato mezcla red, conveniencia y contenidos premium como motor comercial."
+      ],
+      "contentLine": {
+        "label": "Red + fútbol + packs",
+        "description": "Comunicación comercial basada en liderazgo de internet, 5G, portabilidad y alianzas con streaming y deporte en vivo."
+      },
+      "comparison": {
+        "tone": "Comercial y futbolero",
+        "frequency": "Alta",
+        "cta": "Fuerte, portabilidad y packs",
+        "community": "Amplia, responde a claims y fútbol"
+      }
+    },
+    {
+      "name": "Claro Chile",
+      "handle": "clarochile",
+      "url": "https://www.instagram.com/clarochile/",
+      "followers": 198346,
+      "posts": 1369,
+      "summary": "Cuarta marca del benchmark tras la incorporación de WOM. Su contenido gira en torno a Claro Club, beneficios, fútbol, eventos y portabilidad, con un tono promocional más aspiracional y experiencial.",
+      "tags": ["claro club", "eventos", "fútbol", "promociones"],
+      "profilePoints": [
+        "Queda cuarta en seguidores, pero logra una de las piezas con más comentarios fuera del dominio de Entel.",
+        "La marca usa beneficios y experiencias para conectar más allá del servicio básico."
+      ],
+      "contentLine": {
+        "label": "Beneficios y experiencias",
+        "description": "Hace crecer la propuesta desde beneficios de club, eventos, avant premieres, fútbol y descuentos en equipos."
+      },
+      "comparison": {
+        "tone": "Promocional y aspiracional",
+        "frequency": "Media-alta",
+        "cta": "Fuerte, beneficios y cambio",
+        "community": "Activa en concursos y eventos"
+      }
+    },
+    {
+      "name": "Telsur Chile",
+      "handle": "telsur.chile",
+      "url": "https://www.instagram.com/telsur.chile/",
+      "followers": 25263,
+      "posts": 882,
+      "summary": "Jugador mucho más pequeño que las cuatro telcos nacionales del benchmark, pero con una identidad diferenciada: sur de Chile, soporte cercano, beneficios de conectividad y contenido más técnico.",
+      "tags": ["sur de chile", "wifi 7", "servicio", "empresas"],
+      "profilePoints": [
+        "Se ubica lejos en escala frente a las telcos nacionales, pero mantiene una voz propia y territorial.",
+        "Es la marca más técnica del benchmark, con piezas educativas sobre conectividad y soporte."
+      ],
+      "contentLine": {
+        "label": "Conectividad regional",
+        "description": "Relato más cercano y técnico, con foco en servicio, territorio, empresas y educación digital."
+      },
+      "comparison": {
+        "tone": "Cercano y técnico",
+        "frequency": "Media",
+        "cta": "Moderado, servicio y soporte",
+        "community": "Nicho, regional"
+      }
+    },
+    {
+      "name": "Mundo Pacífico",
+      "handle": "mundopacifico",
+      "url": "https://www.instagram.com/mundopacifico/",
+      "followers": 11,
+      "posts": 0,
+      "summary": "El handle analizado no muestra actividad pública comparable al resto del benchmark. Hoy no participa realmente en la conversación visible de la industria desde esta cuenta.",
+      "tags": ["sin actividad", "handle vacío", "sin posts", "fuera de carrera"],
+      "profilePoints": [
+        "El perfil visible muestra 11 seguidores y 0 publicaciones al 2026-04-23.",
+        "No entra en la competencia de contenido porque no hay actividad pública comparable en este handle."
+      ],
+      "contentLine": {
+        "label": "Sin actividad pública",
+        "description": "La cuenta analizada no tiene posts visibles en el recorte actual, por lo que queda fuera de la lectura competitiva editorial."
+      },
+      "comparison": {
+        "tone": "No visible",
+        "frequency": "Nula",
+        "cta": "No visible",
+        "community": "Sin actividad pública"
+      }
+    }
+  ],
+  "topPosts": {
+    "comments": [
+      {
+        "rank": 1,
+        "brand": "Entel Chile",
+        "comments": 3931,
+        "likes": 6187,
+        "views": null,
+        "title": "Concurso Jonas Brothers con fanbase activa",
+        "description": "Es la publicación con más comentarios visibles del benchmark. Cruza fandom, premio y mecánica simple para activar una respuesta masiva.",
+        "postUrl": "https://www.instagram.com/p/DXcTw1okSGl/",
+        "embedUrl": "https://www.instagram.com/p/DXcTw1okSGl/embed/captioned/",
+        "type": "image"
+      },
+      {
+        "rank": 2,
+        "brand": "Entel Chile",
+        "comments": 3387,
+        "likes": 1122,
+        "views": null,
+        "title": "Sorteo de 500 mil millas LATAM Pass",
+        "description": "Confirma que la conversación en telco explota cuando hay incentivo alto, urgencia y una acción concreta de participación.",
+        "postUrl": "https://www.instagram.com/p/DXeinTmjUnC/",
+        "embedUrl": "https://www.instagram.com/p/DXeinTmjUnC/embed/captioned/",
+        "type": "image"
+      }
+    ],
+    "views": [
+      {
+        "rank": 1,
+        "brand": "WOM Chile",
+        "views": 302094,
+        "likes": 940,
+        "comments": 48,
+        "title": "Beneficio cotidiano con WOM en clave liviana",
+        "description": "Pasa a ser el video con más views visibles del recorte actualizado. Muestra que WOM puede lograr alcance masivo cuando mezcla producto, tono liviano y una situación muy reconocible.",
+        "postUrl": "https://www.instagram.com/p/DXNNzg1ga21/",
+        "embedUrl": "https://www.instagram.com/p/DXNNzg1ga21/embed/captioned/",
+        "type": "video"
+      },
+      {
+        "rank": 2,
+        "brand": "Entel Chile",
+        "views": 297047,
+        "likes": 33354,
+        "comments": 139,
+        "title": "Pieza pop con \"las poderosas\" y código Entel",
+        "description": "Queda segunda en views visibles tras la actualización y sigue mostrando cómo entretenimiento, humor y branding reconocible empujan alcance masivo.",
+        "postUrl": "https://www.instagram.com/p/DXZoSbWDTQG/",
+        "embedUrl": "https://www.instagram.com/p/DXZoSbWDTQG/embed/captioned/",
+        "type": "video"
+      }
+    ],
+    "likes": [
+      {
+        "rank": 1,
+        "brand": "WOM Chile",
+        "likes": 50130,
+        "views": null,
+        "comments": 528,
+        "title": "Las Cabras también hay WOM",
+        "description": "Es la publicación con más likes visibles del benchmark actualizado. El orgullo territorial y la demostración de cobertura generan una validación pública enorme.",
+        "postUrl": "https://www.instagram.com/p/DXM2vZtE6SM/",
+        "embedUrl": "https://www.instagram.com/p/DXM2vZtE6SM/embed/captioned/",
+        "type": "image"
+      },
+      {
+        "rank": 2,
+        "brand": "WOM Chile",
+        "likes": 40189,
+        "views": 215871,
+        "comments": 134,
+        "title": "Juan Fernández como prueba de cobertura",
+        "description": "La segunda pieza con más likes visibles convierte territorio extremo, creator content y prueba de red en una historia muy fácil de validar socialmente.",
+        "postUrl": "https://www.instagram.com/p/DW6of4mkXZA/",
+        "embedUrl": "https://www.instagram.com/p/DW6of4mkXZA/embed/captioned/",
+        "type": "video"
+      }
+    ]
+  },
+  "conclusions": {
+    "whatTheyPublish": [
+      {
+        "title": "La industria telco ya no compite solo con planes, compite con entretenimiento",
+        "text": "Los contenidos con más tracción no son los más técnicos. Dominan fútbol, música, cultura pop, concursos, beneficios y experiencias de marca antes que explicaciones de producto puro."
+      },
+      {
+        "title": "Los claims de red siguen siendo centrales, pero necesitan contexto atractivo",
+        "text": "5G, mejor internet, portabilidad líder o fibra rápida siguen apareciendo, pero funcionan mucho mejor cuando vienen envueltos en fútbol, streaming, nostalgia, territorio o premios."
+      },
+      {
+        "title": "El beneficio o incentivo es el idioma más repetido del benchmark",
+        "text": "Clubes de beneficios, sorteos, millas, entradas, descuentos y packs son una constante. La categoría está muy orientada a activar respuesta a través de premios y conveniencia inmediata."
+      },
+      {
+        "title": "WOM mete una segunda lógica de masividad en la categoría",
+        "text": "Su entrada demuestra que no toda la escala visible se construye desde concursos. WOM crece cuando vuelve tangible la cobertura con territorio, creators y escenas cotidianas que validan la red."
+      },
+      {
+        "title": "Telsur es la gran excepción editorial",
+        "text": "Mientras las telcos grandes se mueven en clave masiva y promocional, Telsur conserva una voz más técnica, de servicio y de identidad territorial. Eso la hace distinta, aunque mucho menos grande en escala."
+      }
+    ],
+    "howCommunityReacts": [
+      {
+        "title": "Los concursos rompen completamente la escala de comentarios",
+        "text": "Entel domina la conversación visible por miles de comentarios gracias a concursos y premios grandes. En Telco CL, el incentivo fuerte sigue siendo el principal acelerador de participación abierta."
+      },
+      {
+        "title": "El alcance se dispara cuando entra cultura pop o deporte",
+        "text": "Los reels con mejor performance visible se apoyan en fandom, fútbol, humor, códigos culturales o demostraciones concretas de cobertura. Las piezas puramente informativas quedan muy por detrás."
+      },
+      {
+        "title": "La aprobación visible premia branding emocional y recordación",
+        "text": "Los mayores likes no vienen de hablar de gigas o cobertura en abstracto, sino de piezas con identidad fuerte, tono reconocible, orgullo territorial y conexiones emocionales o nostálgicas."
+      },
+      {
+        "title": "Una cuenta sin actividad simplemente desaparece del mapa competitivo",
+        "text": "El handle analizado de Mundo Pacífico no muestra posts visibles y queda fuera de carrera frente a marcas que publican, activan y sostienen comunidad de forma constante."
+      }
+    ]
+  },
+  "deepDives": [
+    {
+      "brand": "Entel Chile",
+      "intro": "La marca claramente dominante por números visibles. Lidera en seguidores y también concentra los mayores picos de comentarios, likes y views del benchmark.",
+      "whatPublishes": [
+        {
+          "title": "Concursos como motor estructural, no como excepción",
+          "text": "Entel no usa los sorteos como táctica aislada. Son una palanca central para mover participación y visibilidad, sobre todo cuando se apoyan en fandom, viajes o beneficios aspiracionales."
+        },
+        {
+          "title": "Entretenimiento y cultura pop por encima del discurso técnico",
+          "text": "La marca se siente más fuerte cuando entra en códigos culturales reconocibles, humor, música o nostalgia, y no tanto cuando baja a una explicación racional del servicio."
+        },
+        {
+          "title": "Escala de marca convertida en evento",
+          "text": "Su comunicación tiene tamaño, energía y timing de campaña masiva. Cada pieza relevante parece pensada para circular mucho más allá de la audiencia orgánica base."
+        }
+      ],
+      "communityResponse": [
+        {
+          "title": "Dominio absoluto de la conversación",
+          "text": "Sus mejores piezas superan por amplio margen al resto de la industria en comentarios visibles. La brecha no es menor: es estructural."
+        },
+        {
+          "title": "Muy buena aprobación visible cuando entra branding emocional",
+          "text": "No solo gana en concursos. También lidera cuando el contenido se apoya en identidad y memoria de marca, lo que indica una comunidad muy acostumbrada a interactuar con la cuenta."
+        },
+        {
+          "title": "Aprendizaje clave",
+          "text": "En telco, la escala no se logra solo con una buena oferta: se logra cuando la marca entiende cómo convertirse en un actor cultural, promocional y entretenido al mismo tiempo."
+        }
+      ]
+    },
+    {
+      "brand": "WOM Chile",
+      "intro": "Nueva segunda fuerza del benchmark por seguidores públicos y una de las cuentas con mejor validación visible del recorte reciente. Convierte cobertura y territorio en contenido con alto impacto.",
+      "whatPublishes": [
+        {
+          "title": "La red se prueba en lugares reales, no en claims abstractos",
+          "text": "WOM aterriza cobertura y señal en territorios concretos, viajes, localidades y escenas donde la promesa técnica se vuelve visible y fácil de creer."
+        },
+        {
+          "title": "Creators y relato territorial como vehículo creativo",
+          "text": "La marca aprovecha creators, escapadas y orgullo local para amplificar el mensaje. En vez de parecer telecom pura, parece una marca que sale a comprobar su promesa en terreno."
+        },
+        {
+          "title": "Beneficios y producto conviven con una voz irreverente",
+          "text": "Promos, alianzas y ventajas concretas siguen presentes, pero aparecen envueltas en un tono más liviano y desafiante, coherente con el ADN histórico de WOM."
+        }
+      ],
+      "communityResponse": [
+        {
+          "title": "La comunidad valida con fuerza cuando la cobertura se vuelve visible",
+          "text": "Sus mayores likes recientes aparecen cuando la marca muestra territorios concretos y hace tangible el claim de señal. La demostración pesa más que la declaración."
+        },
+        {
+          "title": "Logra alcance masivo sin depender tanto del concurso",
+          "text": "WOM entra al top de views y likes visibles sin necesitar la mecánica extrema de comentarios que domina Entel. Su fortaleza reciente está más en validación y alcance que en conversación masiva."
+        },
+        {
+          "title": "Aprendizaje clave",
+          "text": "En telco, la red se vuelve mucho más potente cuando la audiencia puede verla funcionando en un contexto concreto, humano y territorial, y no solo leerla como promesa de campaña."
+        }
+      ]
+    },
+    {
+      "brand": "Movistar Chile",
+      "intro": "Tercera fuerza del benchmark tras la entrada de WOM. Su estrategia combina claims de red con fútbol, streaming y portabilidad, construyendo una propuesta muy orientada a conveniencia comercial.",
+      "whatPublishes": [
+        {
+          "title": "El fútbol es una de sus llaves más fuertes",
+          "text": "Movistar usa partidos, clásicos y alianzas con señales deportivas como una forma muy eficiente de darle contexto a su promesa de internet y entretenimiento."
+        },
+        {
+          "title": "Superioridad de red como claim repetido",
+          "text": "Premios, rankings y rapidez de la red aparecen de forma constante. La marca busca apropiarse de la categoría desde el liderazgo técnico, pero sin abandonar el tono comercial."
+        },
+        {
+          "title": "El pack manda sobre el servicio aislado",
+          "text": "Streaming, internet hogar, 5G y portabilidad aparecen integrados. La venta no es una línea, sino un ecosistema de conveniencia."
+        }
+      ],
+      "communityResponse": [
+        {
+          "title": "Muy buen alcance cuando cruza red con contenido premium",
+          "text": "Sus mejores views visibles aparecen cuando el claim técnico se conecta con fútbol en vivo o entretenimiento de alto interés."
+        },
+        {
+          "title": "La conversación visible existe, pero no al nivel de Entel o WOM",
+          "text": "Responde bien en piezas con claims fuertes y promos, aunque la brecha frente a los líderes sigue siendo considerable en likes y comments visibles."
+        },
+        {
+          "title": "Aprendizaje clave",
+          "text": "El claim técnico funciona mejor cuando deja de parecer publicidad pura y se conecta con una ocasión real de consumo, como ver deportes o acceder a contenido premium."
+        }
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "category": "Conversación",
+      "icon": "✎",
+      "items": [
+        {
+          "title": "Los concursos siguen siendo el mayor acelerador de comentarios",
+          "text": "La industria muestra una correlación muy fuerte entre incentivo alto y conversación masiva. Entel lo convierte en una ventaja estructural.",
+          "priority": "alta"
+        },
+        {
+          "title": "La acción pedida debe ser simple, rápida y visible",
+          "text": "Comentar, participar o responder funciona mejor cuando la mecánica cabe en una sola instrucción y el premio es muy fácil de entender.",
+          "priority": "alta"
+        },
+        {
+          "title": "La participación abierta pesa más que la explicación detallada",
+          "text": "Las piezas más conversadas no son las más informativas, sino las que invitan a jugar, opinar o competir por algo.",
+          "priority": "media"
+        }
+      ]
+    },
+    {
+      "category": "Alcance",
+      "icon": "♥",
+      "items": [
+        {
+          "title": "Cultura pop y deporte son los lenguajes que más expanden alcance",
+          "text": "Los mayores views visibles aparecen cuando la telco se conecta con fútbol, música, humor o códigos culturales ya instalados en la audiencia.",
+          "priority": "alta"
+        },
+        {
+          "title": "El claim técnico necesita un contexto de consumo real",
+          "text": "Hablar de 5G o mejor internet funciona mucho más cuando se aterriza en algo que la audiencia ya quiere ver o vivir.",
+          "priority": "alta"
+        },
+        {
+          "title": "El video corto con identidad fuerte supera al post meramente informativo",
+          "text": "Cuando la marca entra con ritmo, símbolo o historia reconocible, el contenido gana alcance muy por encima de un carrusel racional.",
+          "priority": "media"
+        }
+      ]
+    },
+    {
+      "category": "Oferta",
+      "icon": "◷",
+      "items": [
+        {
+          "title": "La categoría vende paquetes de valor, no solo conectividad",
+          "text": "Streaming, fútbol, beneficios, club, portabilidad y experiencias aparecen integrados. La telco gana cuando el servicio parece ecosistema.",
+          "priority": "alta"
+        },
+        {
+          "title": "El beneficio visible es más memorable que la tarifa sola",
+          "text": "Los usuarios recuerdan premios, acceso, descuentos y ventajas concretas mucho más que una promesa genérica de plan.",
+          "priority": "media"
+        }
+      ]
+    },
+    {
+      "category": "Posicionamiento",
+      "icon": "◆",
+      "items": [
+        {
+          "title": "La industria premia a las marcas que se comportan como medios",
+          "text": "Entel, WOM, Movistar y Claro funcionan mejor cuando dejan de hablar solo como telco y pasan a operar como marca cultural, territorial, deportiva o de beneficios.",
+          "priority": "alta"
+        },
+        {
+          "title": "La diferenciación puede venir por escala o por identidad",
+          "text": "Entel gana por volumen; Telsur se distingue por territorio y voz técnica. La categoría permite dos caminos: masividad o especialización clara.",
+          "priority": "media"
+        },
+        {
+          "title": "La inactividad saca a una marca del mapa competitivo",
+          "text": "El handle analizado de Mundo Pacífico evidencia que sin publicaciones visibles no hay conversación, ni recordación, ni presencia editorial en la industria.",
+          "priority": "alta"
+        }
+      ]
+    }
+  ]
+}
